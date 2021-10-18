@@ -52,6 +52,12 @@ void openApp(String appName)
 
 //https://www.arduino.cc/en/Reference/KeyboardModifiers
 
+void missionControl()
+{
+  Keyboard.press(KEY_F3);
+  Keyboard.releaseAll();
+}
+
 void dittoStackOpen()
 {
   Keyboard.press(KEY_LEFT_GUI);
@@ -141,7 +147,6 @@ void setup()
   {
     button btn = buttons[i];
     int pin = btn.pin;
-    Serial.println("Binding" + btn.keyName);
     pinMode(pin, INPUT_PULLUP);
     lastReads[i] = digitalRead(pin);
   }
@@ -169,6 +174,10 @@ void loop()
       else if (btn.keyName == "Button3")
       {
         dittoStackOpen();
+      }
+      else if (btn.keyName == "Button4")
+      {
+        missionControl();
       }
       else if (btn.keyName == "Button6")
       {
